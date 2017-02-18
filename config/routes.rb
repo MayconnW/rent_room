@@ -1,4 +1,7 @@
+require 'api_constraints'
 Rails.application.routes.draw do
+  get 'rent/index'
+
   mount Rich::Engine => '/rich', :as => 'rich'
   devise_for :users
   get 'welcome/index'
@@ -8,7 +11,15 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   
-  get '/:username', to: 'welcome#index'
+  namespace :api, defaults: { format: :json } do
+    scope module: :v1,
+            constraints: ApiConstraints.new(version: 1, default: true) do
+      # We are going to list our resources here
+      post 'rents/rent_room' => 'rents#rent_room'
+      post 'rents/free_room' => 'rents#free_room'
+      post 'rents/pay_rent' => 'rents#pay_rent'
+    end
+  end
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'

@@ -61,14 +61,12 @@ ActiveRecord::Schema.define(version: 20170217224455) do
   add_index "payment_secures", ["rent_id"], name: "index_payment_secures_on_rent_id", using: :btree
 
   create_table "rents", force: :cascade do |t|
-    t.integer  "room_id",      limit: 4
-    t.integer  "client_id",    limit: 4
-    t.float    "price_month",  limit: 24
-    t.integer  "day_payment",  limit: 4
-    t.string   "price_secure", limit: 255
-    t.integer  "status",       limit: 4
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.integer  "room_id",     limit: 4
+    t.integer  "client_id",   limit: 4
+    t.integer  "day_payment", limit: 4
+    t.integer  "status",      limit: 4
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
   add_index "rents", ["client_id"], name: "index_rents_on_client_id", using: :btree
@@ -97,6 +95,8 @@ ActiveRecord::Schema.define(version: 20170217224455) do
     t.string   "description",  limit: 255
     t.string   "number",       limit: 255
     t.integer  "apartment_id", limit: 4
+    t.float    "price_month",  limit: 24
+    t.string   "price_secure", limit: 255
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
   end

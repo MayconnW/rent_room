@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   belongs_to :role
   before_create :set_default_role
   
-  scope :my_user, -> { where(id: @userteste.id) }
+  #scope :my_user, -> { where(id: @userteste.id) }
   
   validates :url, uniqueness: true, presence: true
   
