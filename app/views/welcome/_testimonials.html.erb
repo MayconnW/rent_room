@@ -1,0 +1,15 @@
+<aside class="testimonials aside section">
+  <div class="section-inner">
+    <h2 class="heading">Testimonials</h2>
+    <div class="content">
+      <% @testimonials.each do |row| %>
+        <div class="item">
+          <blockquote class="quote">                                  
+            <p><i class="fa fa-quote-left"></i><%= row.description %></p>
+          </blockquote>                
+          <p class="source"><span class="name"><%= row.comment_user.name %></span><br /><span class="title"><%= row.comment_user.occupation %></span></p>                                                             
+        </div><!--//item-->
+      <% end %>
+    </div><!--//content-->
+  </div><!--//section-inner-->
+</aside><!--//section-->

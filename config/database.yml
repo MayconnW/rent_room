@@ -1,0 +1,28 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  username: root
+  password: 
+  host: 127.0.0.1
+  port: 3306
+  pool: 5
+  timeout: 5000
+
+development:
+  <<: *default
+  database: rents
+
+#test:
+#  <<: *default
+#  database: site_with_adm
+
+production:
+  adapter: postgresql
+  encoding: utf8
+  username: bsvzmqrmdvszrz
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
+  host: ec2-54-163-226-30.compute-1.amazonaws.com
+  port: 5432
+  pool: 5
+  timeout: 5000
+  database: d6b2c1p8q3npj8

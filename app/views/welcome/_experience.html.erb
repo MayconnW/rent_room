@@ -1,0 +1,17 @@
+<section class="experience section">
+  <div class="section-inner">
+    <h2 class="heading">Experi&ecircncia profissional</h2>
+    <div class="content">
+      <% @works.each do |work| %>
+        <div class="item">
+          <h3 class="title"><%= work.role %> <span class="place"><a href="<%= work.link %>" target="_blank"><%= work.company %></a>
+            </span> <span class="year">
+              (<%= work.begin_date.strftime("%Y") %> - <%= work.actual ? 'Presente' : work.end_date.strftime("%Y")%>)
+            </span>
+          </h3>
+          <p><%= raw work.description %></p>
+        </div><!--//item-->
+      <% end %>
+    </div><!--//content-->  
+  </div><!--//section-inner-->                 
+</section><!--//section-->

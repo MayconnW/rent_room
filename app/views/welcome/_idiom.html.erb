@@ -1,0 +1,32 @@
+<aside class="languages aside section">
+  <div class="section-inner">
+    <h2 class="heading">Idiomas</h2>
+    <div class="content">
+      <ul class="list-unstyled">
+        <% @idioms.each do |row| %>
+          <li class="item">
+            <span class="title"><strong><%= row.title %>: </strong></span>
+            <span class="level">
+              <% stars = row.level <= 10 ? row.level / 2 : 5 %>
+              <% mod = row.level <= 10 ? row.level % 2 : 0 %>
+              <% case stars
+                   when 1 %> Básico
+                <% when 2 %> Intermediário
+                <% when 3 %> Avançado
+                <% when 4 %> Fluente
+                <% when 5 %> Nativo
+              <% end %>
+              <br class="visible-xs"/>
+              <% stars.times do %>
+                <i class="fa fa-star"></i> 
+              <% end %>
+              <% if mod > 0 %>
+                <i class="fa fa-star-half"></i> 
+              <% end %>
+            </span>
+          </li><!--//item-->          
+        <% end %>
+      </ul>
+    </div><!--//content-->
+  </div><!--//section-inner-->
+</aside><!--//section-->

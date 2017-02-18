@@ -1,0 +1,12 @@
+Installing Imagick
+
+1. Update apt-get packages inside the C9 terminal
+    $ sudo apt-get update 
+2. Install imagemagick command-line tools via apt-get
+    $ sudo apt-get install imagemagick
+    
+You can know more about this in:
+https://github.com/sferik/rails_admin/wiki/Paperclip
+https://github.com/thoughtbot/paperclip
+http://www.imagemagick.org/script/index.php
+https://richonrails.com/articles/getting-started-with-paperclip

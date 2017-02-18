@@ -1,0 +1,17 @@
+<aside class="education aside section">
+  <div class="section-inner">
+    <h2 class="heading">Estudos</h2>
+    <div class="content">
+      <% @courses.each do |row| %>
+        <div class="item">                      
+          <h3 class="title"><i class="fa fa-graduation-cap"></i> <%= row.name %></h3>
+          <h4 class="university"><%= row.institute %>
+            <span class="year">
+              (<%= row.begin_date.strftime("%Y") %> - <%= row.unfinished ? 'Presente' : row.end_date.strftime("%Y")%>)
+            </span>
+          </h4>
+        </div><!--//item-->
+      <% end %>
+    </div><!--//content-->
+  </div><!--//section-inner-->
+</aside><!--//section-->

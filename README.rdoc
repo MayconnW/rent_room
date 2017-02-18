@@ -1,0 +1,32 @@
+== README
+
+This is a simple project that can help you to create a personal portfolio. 
+
+To install this project is very simple, just clone the project and run the bundle.
+
+Remember that to run this project you need to have the Ruby on Rails configured in your machine. I advise that you use the cloud9 (http://c9.io). This provides all that you need to run rails project's.
+
+After cloned the project follow this steps: 
+
+1 - Run the command "bundle install"
+
+2 - Find the file "config/database.yml" and add your database configuration.
+
+3 - Run the command "rake db:create db:migrate db:seed".
+
+4 - Then run the project "rails -s" ( if you are running at Cloud9 execute "rails -s -b $IP -p $PORT"). 
+
+5 - Access your site path '/admin'. Like as "http://localhost/admin".
+
+6 - Create an user with 'user' role.
+
+7 - Add informations about that user like as projects, experiences,...
+
+8 - Log out from the admin.
+
+9 - Log in now with your created user and see how the page is.
+
+Maybe you need to install the "imagick". Please follow this tutorial "HowToInstallImagick.txt".
+
+I hope that you like this project. And I will add more functions day after day.
+

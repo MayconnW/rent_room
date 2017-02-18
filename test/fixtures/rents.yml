@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  room_id: 
+  client_id: 
+  price_month: 1.5
+  day_payment: 1
+  price_secure: MyString
+
+two:
+  room_id: 
+  client_id: 
+  price_month: 1.5
+  day_payment: 1
+  price_secure: MyString

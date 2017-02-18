@@ -1,0 +1,32 @@
+<aside class="skills aside section">
+  <div class="section-inner">
+    <h2 class="heading">Habilidades</h2>
+    <div class="content">
+      <% if @skills.size > 0 %>
+        <p class="intro">
+          Algumas habilidades adquiridas ao longo dessa jornada programando.</p>
+      <% end %>
+      <div class="skillset">
+        <% @skills.each do |skill| %>
+          <div class="item">
+            <h3 class="level-title"><%= skill.title %>
+              <span class="level-label" data-toggle="tooltip" data-placement="left" data-animation="true" title="">
+              <% case skill.level 
+                   when 0..36 %><%= "Básico" %>
+                <% when 35..61 %>Intermediário
+                <% when 61..76 %>Avançado
+                <% when 75..91 %>Pro
+                <% when 90..999 %>Expert
+              <% end %>
+              </span>
+            </h3>
+            <div class="level-bar">
+              <div class="level-bar-inner" data-level='<%= "#{skill.level}%" %>'>
+              </div>                                      
+            </div><!--//level-bar-->                                 
+          </div><!--//item-->
+        <% end %>
+      </div>              
+    </div><!--//content-->  
+  </div><!--//section-inner-->                 
+</aside><!--//section-->

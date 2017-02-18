@@ -1,0 +1,27 @@
+<section class="projects section">
+  <div class="section-inner">
+    <h2 class="heading">Outros projetos</h2>
+    <div class="content">
+      <% @projectsSecondary.each do |item| %>
+        <div class="item">
+          <h3 class="title"><%= item.title %> 
+            <% if item.open_source %>
+              <span class="label label-theme">Open Source</span>
+            <% end %>
+          </h3>
+          <p class="summary">
+            <%= raw item.description %>
+          </p>
+          <p>
+            <% if item.link_app != "" %>
+              <a class="more-link" href="<%= item.link_app %>" target="_blank"><i class="fa fa-external-link"></i> Visitar site</a>
+            <% end %>
+            <% if item.link_github != "" %>
+              <a class="more-link" href="<%= item.link_github %>" target="_blank"><i class="fa fa-external-link"></i> Ver no GitHub</a>
+            <% end %>
+          </p>
+        </div><!--//item-->
+      <% end %>
+    </div><!--//content-->  
+  </div><!--//section-inner-->                 
+</section><!--//section-->

@@ -1,0 +1,61 @@
+<section class="latest section">
+  <div class="section-inner">
+    <h2 class="heading">&Uacuteltimos projetos</h2>
+    <div class="content">  
+    
+      <% if @projectMain != nil %>
+        <div class="item featured text-center">
+          <h3 class="title"><%= @projectMain.title %>
+            <% if @projectMain.open_source %>
+              <span class="label label-theme">Open Source</span>
+            <% end %>
+          </h3>
+          <p class="summary"><%= @projectMain.highlight %></p>
+          <div class="featured-image">
+            <a href="<%= @projectMain.link_app %>" target="_blank">
+              <%= image_tag(@projectMain.logo.url,:class => "img-responsive project-image", :alt=>"#{@projectMain.title}" )%>
+            </a>
+            <div class="ribbon">
+              <div class="text">New</div>
+            </div>
+          </div>
+          <div class="desc text-left">                                    
+            <%= raw @projectMain.description %>
+          </div><!--//desc-->
+          <% if @projectMain.link_app != "" %>
+            <a class="btn btn-cta-secondary" href="<%= @projectMain.link_app %>" target="_blank"><i class="fa fa-thumbs-o-up"></i> Visitar site</a>
+          <% end %>
+          <% if @projectMain.link_github != "" %>
+            <a class="btn btn-cta-secondary" href="<%= @projectMain.link_github %>" target="_blank"><i class="fa fa-thumbs-o-up"></i> Ver Projeto</a>
+          <% end %>
+        </div><!--//item-->
+        <hr class="divider" />
+      <% end %>
+      
+      <% @projectsHead.each do |project| %>  
+        <div class="item row">
+          <a class="col-md-4 col-sm-4 col-xs-12" href="<%= project.link_app %>" target="_blank">
+            <%= image_tag(project.logo.url,:class => "img-responsive project-image", :alt=>"#{@projectMain.title}" )%>
+          </a>
+          <div class="desc col-md-8 col-sm-8 col-xs-12">
+            <h3 class="title"><%= project.title %>
+              <% if project.open_source %>
+                <span class="label label-theme">Open Source</span>
+              <% end %>
+            </h3>
+            <p><%= raw project.description %></p>
+            <p></p>
+            <p>
+              <% if project.link_app != "" %>
+                <a class="more-link" href="<%= project.link_app %>" target="_blank"><i class="fa fa-external-link"></i> Visitar site</a>
+              <% end %>
+              <% if project.link_github != "" %>
+                <a class="more-link" href="<%= project.link_github %>" target="_blank"><i class="fa fa-external-link"></i> Ver no GitHub</a>
+              <% end %>
+            </p>
+          </div><!--//desc-->                          
+        </div><!--//item-->
+      <% end %>
+    </div><!--//content-->  
+  </div><!--//section-inner-->                 
+</section><!--//section-->
