@@ -1,4 +1,4 @@
-class Api::V1::RentsController < ApplicationController
+class Api::V1::RentsController < Api::V1::DefaultApiController
   respond_to :json
   
   def rent_room
@@ -23,10 +23,7 @@ class Api::V1::RentsController < ApplicationController
       end
     end
     
-    respond_to do |format|
-      msg = { :status => status, :data => data, :message => message }
-      format.json  { render :json => msg }
-    end
+    _response(status, data, message)
     
   end
   
@@ -51,10 +48,8 @@ class Api::V1::RentsController < ApplicationController
       end
     end
     
-    respond_to do |format|
-      msg = { :status => status, :data => data, :message => message }
-      format.json  { render :json => msg }
-    end
+    _response(status, data, message)
+    
   end
   
   def pay_rent
@@ -67,7 +62,7 @@ class Api::V1::RentsController < ApplicationController
       payment = PaymentRent.new
       
       begin
-        data = payment.pay params[:rent_id], params[:month].to_i, params[:value].to_i
+        data = payment.pay params[:rent_id],  params[:value].to_i, params[:month].to_i, params[:year].to_i
         message = "Payment made successfully"
         status = "success"
       rescue Exception => e
@@ -77,10 +72,32 @@ class Api::V1::RentsController < ApplicationController
       end
     end
     
-    respond_to do |format|
-      msg = { :status => status, :data => data, :message => message }
-      format.json  { render :json => msg }
+    _response(status, data, message)
+    
+  end
+  
+  def pay_secure
+    
+    validate = validate_param_to_pay_secure
+    if validate != ""
+      data = {}
+      message = validate
+      status = 'error'
+    else
+      payment = PaymentSecure.new
+      
+      begin
+        data = payment.pay params[:rent_id], params[:value].to_i
+        message = "Payment made successfully"
+        status = "success"
+      rescue Exception => e
+        data = {}
+        message = "#{e.message}"
+        status = "error"
+      end
     end
+    
+    _response(status, data, message)
     
   end
   
@@ -98,9 +115,16 @@ class Api::V1::RentsController < ApplicationController
     def validate_param_to_pay_rent
       return "Please inform the param rent_id" if !params.has_key?(:rent_id)
       return "Please inform the param month" if !params.has_key?(:month)
+      return "Please inform the param year" if !params.has_key?(:year)
       return "Please inform the param value" if !params.has_key?(:value)
       return "The param value must be greater than 0" if params[:value].to_i <= 0
       return "The param month must be between 1 and 12" if !(1..12).include?(params[:month].to_i)
+      return  ""
+    end
+    def validate_param_to_pay_secure
+      return "Please inform the param rent_id" if !params.has_key?(:rent_id)
+      return "Please inform the param value" if !params.has_key?(:value)
+      return "The param value must be greater than 0" if params[:value].to_i <= 0
       return  ""
     end
     def room_params

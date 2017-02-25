@@ -10,7 +10,7 @@
   Role.find_or_create_by({name: role})
 end
 
-User.create({:email => "adm@adm.com", :url => "admin", :password => "a1s2d3f4", :password_confirmation => "a1s2d3f4", :role => Role.find_by_name('admin')})
+User.create({:email => "adm@adm.com", :name => 'admin', :url => "admin", :password => "a1s2d3f4", :password_confirmation => "a1s2d3f4", :role => Role.find_by_name('admin')})
 
 Hotel.create([:description => "Hotel 1", :address => "Test Street"])
 

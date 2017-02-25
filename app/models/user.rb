@@ -1,8 +1,11 @@
+require 'bcrypt'
+require 'securerandom'
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+  include BCrypt
          
   belongs_to :role
   before_create :set_default_role
@@ -26,9 +29,32 @@ class User < ActiveRecord::Base
   #config.label_methods.unshift(:display_name)
   #em seguida criar a função com o nome sugerido
   
+  def login_api(email, pass)
+    user = User.find_by_email(email)
+    if user.valid_password?pass
+      
+      UserApi.delete_all "user_id = #{user.id}"
+      
+      user_api = UserApi.new
+      user_api.user = user
+      user_api.token = generate_token pass
+      user_api.save
+      return user_api
+    else
+      raise "Invalid user or password"
+    end
+  end
+  
   private
   def set_default_role
     self.role ||= Role.find_by_name('admin')
+  end
+  
+  def generate_token(pass)
+    random_string = SecureRandom.hex
+    salt = BCrypt::Engine.generate_salt
+    result = BCrypt::Engine.hash_secret(pass,salt,random_string)
+    return result
   end
   
   #scopes [:my_user]

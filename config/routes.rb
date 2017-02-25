@@ -18,6 +18,8 @@ Rails.application.routes.draw do
       post 'rents/rent_room' => 'rents#rent_room'
       post 'rents/free_room' => 'rents#free_room'
       post 'rents/pay_rent' => 'rents#pay_rent'
+      post 'rents/pay_secure' => 'rents#pay_secure'
+      post 'login_api' => 'users#login_api'
     end
   end
 

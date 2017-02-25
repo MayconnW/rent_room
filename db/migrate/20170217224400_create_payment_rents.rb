@@ -3,6 +3,7 @@ class CreatePaymentRents < ActiveRecord::Migration
     create_table :payment_rents do |t|
       t.references :rent, index: true, foreign_key: true
       t.integer :month
+      t.integer :year
       t.float :value
 
       t.timestamps null: false
