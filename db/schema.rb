@@ -14,31 +14,43 @@
 ActiveRecord::Schema.define(version: 20170219004113) do
 
   create_table "apartments", force: :cascade do |t|
-    t.string   "description", limit: 255
-    t.string   "number",      limit: 255
-    t.integer  "hotel_id",    limit: 4
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.string   "description",        limit: 255
+    t.string   "number",             limit: 255
+    t.integer  "hotel_id",           limit: 4
+    t.string   "photo_file_name",    limit: 255
+    t.string   "photo_content_type", limit: 255
+    t.integer  "photo_file_size",    limit: 4
+    t.datetime "photo_updated_at"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
   add_index "apartments", ["hotel_id"], name: "index_apartments_on_hotel_id", using: :btree
 
   create_table "clients", force: :cascade do |t|
-    t.string   "first_name", limit: 255
-    t.string   "last_name",  limit: 255
+    t.string   "first_name",         limit: 255
+    t.string   "last_name",          limit: 255
     t.date     "born"
-    t.string   "country",    limit: 255
-    t.string   "phone",      limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "country",            limit: 255
+    t.string   "phone",              limit: 255
+    t.string   "photo_file_name",    limit: 255
+    t.string   "photo_content_type", limit: 255
+    t.integer  "photo_file_size",    limit: 4
+    t.datetime "photo_updated_at"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
   create_table "hotels", force: :cascade do |t|
-    t.string   "description", limit: 255
-    t.string   "address",     limit: 255
-    t.string   "cep",         limit: 255
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.string   "description",        limit: 255
+    t.string   "address",            limit: 255
+    t.string   "cep",                limit: 255
+    t.string   "photo_file_name",    limit: 255
+    t.string   "photo_content_type", limit: 255
+    t.integer  "photo_file_size",    limit: 4
+    t.datetime "photo_updated_at"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
   create_table "payment_rents", force: :cascade do |t|
@@ -93,13 +105,18 @@ ActiveRecord::Schema.define(version: 20170219004113) do
   end
 
   create_table "rooms", force: :cascade do |t|
-    t.string   "description",  limit: 255
-    t.string   "number",       limit: 255
-    t.integer  "apartment_id", limit: 4
-    t.float    "price_month",  limit: 24
-    t.float    "price_secure", limit: 24
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.string   "description",        limit: 255
+    t.string   "number",             limit: 255
+    t.integer  "apartment_id",       limit: 4
+    t.float    "price_month",        limit: 24
+    t.float    "price_secure",       limit: 24
+    t.integer  "status",             limit: 4
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.string   "photo_file_name",    limit: 255
+    t.string   "photo_content_type", limit: 255
+    t.integer  "photo_file_size",    limit: 4
+    t.datetime "photo_updated_at"
   end
 
   add_index "rooms", ["apartment_id"], name: "index_rooms_on_apartment_id", using: :btree

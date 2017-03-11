@@ -8,7 +8,7 @@ class Api::V1::DefaultApiController < ApplicationController
   def require_token
     validate = validate_param_api
     if validate != ""
-      data = {}
+      data = []
       message = validate
       status = 'error'
       return _response(status, data, message)
@@ -16,7 +16,7 @@ class Api::V1::DefaultApiController < ApplicationController
     
     @user_api_logged = UserApi.find_by_token(params[:token])
     if !@user_api_logged
-      data = {}
+      data = []
       message = "Invalid token"
       status = 'error'
       return _response(status, data, message)

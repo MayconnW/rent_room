@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
   
   def login_api(email, pass)
     user = User.find_by_email(email)
-    if user.valid_password?pass
+    if (user) and (user.valid_password?pass)
       
       UserApi.delete_all "user_id = #{user.id}"
       

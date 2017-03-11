@@ -20,6 +20,11 @@ Rails.application.routes.draw do
       post 'rents/pay_rent' => 'rents#pay_rent'
       post 'rents/pay_secure' => 'rents#pay_secure'
       post 'login_api' => 'users#login_api'
+      resources :rooms, :only => [:index]
+      resources :clients, :only => [:index]
+      resources :hotels, :only => [:index]
+      get 'hotels/list_of_apartments' => 'hotels#list_of_apartments'
+      get 'hotels/list_of_rooms' => 'hotels#list_of_rooms'
     end
   end
 

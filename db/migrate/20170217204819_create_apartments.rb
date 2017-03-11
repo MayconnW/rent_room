@@ -4,6 +4,7 @@ class CreateApartments < ActiveRecord::Migration
       t.string :description
       t.string :number
       t.references :hotel, index: true, foreign_key: true
+      t.attachment :photo
 
       t.timestamps null: false
     end

@@ -6,6 +6,7 @@ class CreateClients < ActiveRecord::Migration
       t.date :born
       t.string :country
       t.string :phone
+      t.attachment :photo
 
       t.timestamps null: false
     end

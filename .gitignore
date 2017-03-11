@@ -15,8 +15,9 @@
 /log/*
 !/log/.keep
 /tmp
-/public/system/events
+/public/system/apartments
 /public/system/cios
 /public/system/companies
 /public/system/projects
 /public/system/users
+/public/system
