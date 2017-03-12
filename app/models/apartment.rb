@@ -26,7 +26,6 @@ class Apartment < ActiveRecord::Base
     return result
   end
   
-  private
   def fill_object
     result = {};
     default_columns_json.each do |column|

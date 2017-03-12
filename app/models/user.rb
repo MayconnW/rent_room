@@ -19,11 +19,16 @@ class User < ActiveRecord::Base
       :thumb => "100x100#",
       :small  => "150x150>",
       :medium => "200x200" 
-    }
+    },
+    :default_url => '/defaults/photos/user.png'
   validates_attachment_content_type :photo, :content_type => /\Aimage\/.*\Z/
   # add a delete_<asset_name> method: 
   attr_accessor :delete_photo
   before_validation { self.photo.clear if self.delete_photo == '1' }
+  
+  def photo_url
+    photo.url
+  end
   
   #Se quiser alterar o campo de visualização pode se usar o comando
   #config.label_methods.unshift(:display_name)
@@ -39,7 +44,7 @@ class User < ActiveRecord::Base
       user_api.user = user
       user_api.token = generate_token pass
       user_api.save
-      return user_api
+      return build_login(user_api)
     else
       raise "Invalid user or password"
     end
@@ -55,6 +60,23 @@ class User < ActiveRecord::Base
     salt = BCrypt::Engine.generate_salt
     result = BCrypt::Engine.hash_secret(pass,salt,random_string)
     return result
+  end
+  
+  def build_login(user_api)
+    user = {};
+    default_columns_json.each do |column|
+      user[column.to_sym] = user_api.user.send(column)
+    end
+    result = {}
+    result[:user] = user 
+    result[:token] = user_api.token
+    return result
+  end
+  
+  def default_columns_json  
+    return ["id", "email", "name", "url", "role_id", 
+            "photo_url", "created_at", "updated_at"
+    ]
   end
   
   #scopes [:my_user]

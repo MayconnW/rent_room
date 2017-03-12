@@ -13,8 +13,8 @@ class Api::V1::UsersController < ApplicationController
       begin
         data = Hash.new
         user_api = user.login_api params[:email], params[:pass]
-        data['user'] = user_api.user
-        data['token'] = user_api.token
+        data['user'] = user_api[:user]
+        data['token'] = user_api[:token]
         message = "Logged successfully"
         status = "success"
       rescue Exception => e
