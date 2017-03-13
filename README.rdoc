@@ -1,7 +1,5 @@
 == README
 
-This is a simple project that can help you to create a personal portfolio. 
-
 To install this project is very simple, just clone the project and run the bundle.
 
 Remember that to run this project you need to have the Ruby on Rails configured in your machine. I advise that you use the cloud9 (http://c9.io). This provides all that you need to run rails project's.
